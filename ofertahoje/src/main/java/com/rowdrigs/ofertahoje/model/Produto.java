@@ -36,6 +36,12 @@ public class Produto {
 
 	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
+	
+	public String getMarca() {
+		return marca;
+	}
+
+	
 
 	@NotBlank(message = "A descrição é obrigatório")
 	@Size(min = 1, max = 50, message = "O tamanho da descrição deve estar entre 1 e 50")
@@ -45,11 +51,12 @@ public class Produto {
 	@DecimalMin(value = "50", message = "O valor da produto deve ser maior que R$0,50")
 	@DecimalMax(value = "9999999.99", message ="O valor de produto deve ser menor que R$ 9.999.999.99")
 	private BigDecimal valor;
-
 	
-	@Column(name = "teor_alcoolico")
-	@NotNull(message = "O teor alcoolico é obrigatório")
-	private BigDecimal teorAlcoolico;
+	@NotNull(message = "O novo valor é obrigatório")
+	@DecimalMin(value = "50", message = "O valor da produto deve ser maior que R$0,50")
+	@DecimalMax(value = "9999999.99", message ="O valor de produto deve ser menor que R$ 9.999.999.99")
+	private BigDecimal novovalor;
+
 	
 	@NotNull(message = "A comissão é obrigatória")
 	@DecimalMax(value = "10000", message = "A comissão deve ser igual ou menor que 100")
@@ -64,11 +71,6 @@ public class Produto {
 	@Enumerated(EnumType.STRING)
 	@NotNull(message = "A origem é obrigatório")
 	private Origem origem;
-
-	
-	@Enumerated(EnumType.STRING)
-	@NotNull(message = "O sabor é obrigatório")
-	private Sabor sabor;
 
 	
 	@ManyToOne
@@ -97,6 +99,13 @@ public class Produto {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	@NotBlank(message = "Marca é obrigatório")
+	private String marca;
 
 	public String getDescricao() {
 		return descricao;
@@ -122,20 +131,13 @@ public class Produto {
 		this.valor = valor;
 	}
 
-	public BigDecimal getTeorAlcoolico() {
-		return teorAlcoolico;
+
+	public BigDecimal getNovovalor() {
+		return novovalor;
 	}
 
-	public void setTeorAlcoolico(BigDecimal teorAlcoolico) {
-		this.teorAlcoolico = teorAlcoolico;
-	}
-
-	public BigDecimal getComissao() {
-		return comissao;
-	}
-
-	public void setComissao(BigDecimal comissao) {
-		this.comissao = comissao;
+	public void setNovovalor(BigDecimal novovalor) {
+		this.novovalor = novovalor;
 	}
 
 	public Integer getQuantidadeEstoque() {
@@ -154,13 +156,6 @@ public class Produto {
 		this.origem = origem;
 	}
 
-	public Sabor getSabor() {
-		return sabor;
-	}
-
-	public void setSabor(Sabor sabor) {
-		this.sabor = sabor;
-	}
 
 	public Categoria getCategoria() {
 		return categoria;

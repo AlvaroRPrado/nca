@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rowdrigs.ofertahoje.model.Produto;
 import com.rowdrigs.ofertahoje.model.Origem;
-import com.rowdrigs.ofertahoje.model.Sabor;
 import com.rowdrigs.ofertahoje.repository.Categorias;
 import com.rowdrigs.ofertahoje.service.CadastroProdutoService;
 
@@ -28,13 +27,12 @@ public class ProdutosController {
 	@RequestMapping("/produtos/novo")
 	public ModelAndView novo(Produto cerveja) {
 		ModelAndView mv = new ModelAndView("produto/CadastroProduto");
-		mv.addObject("sabores", Sabor.values());
 		mv.addObject("categorias", categorias.findAll());
 		mv.addObject("origens", Origem.values());
 		return mv;
 	}
 	
-	@RequestMapping(value = "/podutos/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/produtos/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Produto produto, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			return novo(produto);
