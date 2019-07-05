@@ -1,4 +1,4 @@
-package com.rowdrigs.ofertahoje.validetion;
+package com.rowdrigs.ofertahoje.validation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

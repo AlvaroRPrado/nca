@@ -1,6 +1,10 @@
 package com.rowdrigs.ofertahoje.config.init;
 
-//import org.springframework.web.filter.CharacterEncodingFilter;
+import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration.Dynamic;
+
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.rowdrigs.ofertahoje.config.JPAConfig;
@@ -23,7 +27,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		return new String[] { "/" };
 	}
 	// correção de acentuaçãoO
-	/*@Override
+	@Override
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 		characterEncodingFilter.setEncoding("UTF-8");
@@ -31,9 +35,12 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		
 		return new Filter[] { characterEncodingFilter };
 	}
-*/
 
 
-	
+
+	@Override
+	protected void customizeRegistration(Dynamic registration) {
+		registration.setMultipartConfig(new MultipartConfigElement(""));
+	}
 
 }

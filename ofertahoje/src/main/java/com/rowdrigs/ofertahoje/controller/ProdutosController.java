@@ -25,7 +25,7 @@ public class ProdutosController {
 	private CadastroProdutoService cadastroProdutoService;
 
 	@RequestMapping("/produtos/novo")
-	public ModelAndView novo(Produto cerveja) {
+	public ModelAndView novo(Produto produto) {
 		ModelAndView mv = new ModelAndView("produto/CadastroProduto");
 		mv.addObject("categorias", categorias.findAll());
 		mv.addObject("origens", Origem.values());

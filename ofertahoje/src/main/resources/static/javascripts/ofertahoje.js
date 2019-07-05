@@ -1,6 +1,6 @@
 var Ofertahoje = Ofertahoje|| {};
 
-Brewer.MaskMoney = (function() {
+Ofertahoje.MaskMoney = (function() {
 	
 	function MaskMoney() {
 		this.decimal = $('.js-decimal');

@@ -1,4 +1,4 @@
-package com.rowdrigs.ofertahoje.handler;
+package com.rowdrigs.ofertahoje.controller.handler;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

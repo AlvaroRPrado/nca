@@ -8,6 +8,7 @@ import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.StandardDialect;
 
 import com.rowdrigs.ofertahoje.tymeleaf.processor.ClassForErrorAttributeTagProcessor;
+import com.rowdrigs.ofertahoje.tymeleaf.processor.MessageElementTagProcessor;
 
 public class OfertahojeDialect extends AbstractProcessorDialect {
 
@@ -19,7 +20,9 @@ public class OfertahojeDialect extends AbstractProcessorDialect {
 	public Set<IProcessor> getProcessors(String dialectPrefix) {
 		final Set<IProcessor> processadores = new HashSet<>();
 		processadores.add(new ClassForErrorAttributeTagProcessor(dialectPrefix));
+		processadores.add(new MessageElementTagProcessor(dialectPrefix));
 		return processadores;
 	}
+
 
 }

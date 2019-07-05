@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.rowdrigs.ofertahoje.validetion.SKU;
+import com.rowdrigs.ofertahoje.validation.SKU;
 
 
 @Entity
@@ -37,30 +37,22 @@ public class Produto {
 	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
 	
-	public String getMarca() {
-		return marca;
-	}
-
-	
+	private String marca;
 
 	@NotBlank(message = "A descrição é obrigatório")
 	@Size(min = 1, max = 50, message = "O tamanho da descrição deve estar entre 1 e 50")
 	private String descricao;
 	
 	@NotNull(message = "O valor é obrigatório")
-	@DecimalMin(value = "50", message = "O valor da produto deve ser maior que R$0,50")
+	@DecimalMin(value = "0.5", message = "O valor da produto deve ser maior que R$0,50")
 	@DecimalMax(value = "9999999.99", message ="O valor de produto deve ser menor que R$ 9.999.999.99")
 	private BigDecimal valor;
 	
 	@NotNull(message = "O novo valor é obrigatório")
-	@DecimalMin(value = "50", message = "O valor da produto deve ser maior que R$0,50")
+	@DecimalMin(value = "0.5", message = "O valor da produto deve ser maior que R$0,50")
 	@DecimalMax(value = "9999999.99", message ="O valor de produto deve ser menor que R$ 9.999.999.99")
+	@Column(name = "novo_valor")
 	private BigDecimal novovalor;
-
-	
-	@NotNull(message = "A comissão é obrigatória")
-	@DecimalMax(value = "10000", message = "A comissão deve ser igual ou menor que 100")
-	private BigDecimal comissao;
 
 	@Max(value = 9999, message = "A quantidade deve ser menor que 9.999")
 	@Column(name = "quantidade_estoque")
@@ -77,6 +69,11 @@ public class Produto {
 	@JoinColumn(name = "codigo_categoria")
 	@NotNull(message = "O categoria é obrigatório")
 	private Categoria categoria;
+	
+	private String foto;
+	
+	@Column(name = "content_type")
+	private String contentType;
 	
 	@PrePersist @PreUpdate
 	private void prePersistUpdate(){
@@ -100,12 +97,14 @@ public class Produto {
 		this.nome = nome;
 	}
 	
+	
+	public String getMarca() {
+		return marca;
+	}
+
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-
-	@NotBlank(message = "Marca é obrigatório")
-	private String marca;
 
 	public String getDescricao() {
 		return descricao;
@@ -163,6 +162,26 @@ public class Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+	
+	
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+	
+	
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 	@Override
