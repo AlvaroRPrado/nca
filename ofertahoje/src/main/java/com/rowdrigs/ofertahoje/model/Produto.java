@@ -37,7 +37,9 @@ public class Produto {
 	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
 	
+	@NotBlank(message = "A marca é obrigatório")
 	private String marca;
+	
 
 	@NotBlank(message = "A descrição é obrigatório")
 	@Size(min = 1, max = 50, message = "O tamanho da descrição deve estar entre 1 e 50")
@@ -52,12 +54,18 @@ public class Produto {
 	@DecimalMin(value = "0.5", message = "O valor da produto deve ser maior que R$0,50")
 	@DecimalMax(value = "9999999.99", message ="O valor de produto deve ser menor que R$ 9.999.999.99")
 	@Column(name = "novo_valor")
-	private BigDecimal novovalor;
+	private BigDecimal novoValor;
+
 
 	@Max(value = 9999, message = "A quantidade deve ser menor que 9.999")
 	@Column(name = "quantidade_estoque")
 	@NotNull(message = "A quantidade de estoque é obrigatório")
 	private Integer quantidadeEstoque;
+	
+	private String foto;
+	
+	@Column(name = "content_type")
+	private String contentType;
 
 	
 	@Enumerated(EnumType.STRING)
@@ -70,10 +78,6 @@ public class Produto {
 	@NotNull(message = "O categoria é obrigatório")
 	private Categoria categoria;
 	
-	private String foto;
-	
-	@Column(name = "content_type")
-	private String contentType;
 	
 	@PrePersist @PreUpdate
 	private void prePersistUpdate(){
@@ -97,7 +101,6 @@ public class Produto {
 		this.nome = nome;
 	}
 	
-	
 	public String getMarca() {
 		return marca;
 	}
@@ -105,6 +108,8 @@ public class Produto {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
+
+	
 
 	public String getDescricao() {
 		return descricao;
@@ -131,14 +136,15 @@ public class Produto {
 	}
 
 
-	public BigDecimal getNovovalor() {
-		return novovalor;
+	public BigDecimal getNovoValor() {
+		return novoValor;
 	}
 
-	public void setNovovalor(BigDecimal novovalor) {
-		this.novovalor = novovalor;
+	public void setNovoValor(BigDecimal novoValor) {
+		this.novoValor = novoValor;
 	}
 
+	
 	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
@@ -173,8 +179,6 @@ public class Produto {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
-	
 
 	public String getContentType() {
 		return contentType;

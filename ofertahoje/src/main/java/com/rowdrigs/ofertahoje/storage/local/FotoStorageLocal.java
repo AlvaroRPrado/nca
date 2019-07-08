@@ -50,6 +50,7 @@ private static final Logger logger = LoggerFactory.getLogger(FotoStorageLocal.cl
 		try {
 			return Files.readAllBytes(this.localTemporario.resolve(nome));
 		} catch (IOException e) {
+			
 			throw new RuntimeException("Erro lendo a foto temporária", e);
 		}
 	}

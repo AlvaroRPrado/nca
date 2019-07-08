@@ -10,11 +10,12 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import com.rowdrigs.ofertahoje.config.JPAConfig;
 import com.rowdrigs.ofertahoje.config.ServiceConfig;
 import com.rowdrigs.ofertahoje.config.WebConfig;
+
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] {JPAConfig.class, ServiceConfig.class};
+		return new Class<?>[] { JPAConfig.class, ServiceConfig.class };
 	}
 
 	@Override
@@ -26,18 +27,16 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
-	// correção de acentuaçãoO
+	
 	@Override
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-		characterEncodingFilter.setEncoding("UTF-8");
-		characterEncodingFilter.setForceEncoding(true);
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
 		
-		return new Filter[] { characterEncodingFilter };
+        return new Filter[] { characterEncodingFilter };
 	}
-
-
-
+	
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
 		registration.setMultipartConfig(new MultipartConfigElement(""));

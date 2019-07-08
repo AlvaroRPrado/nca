@@ -1,3 +1,3 @@
-ALTER TABLE  PRODUTO
-ADD foto VARCHAR(100)
-ADD content_type VARCHAR(120);
+ALTER TABLE produto
+ADD foto varchar(100)
+ADD content_type varchar(120);
